@@ -7,6 +7,7 @@ import fastifySwaggerUI from '@fastify/swagger-ui';
 import { authenticateWithPassword } from './routes/auth/authenticateWithPassword';
 import fastifyJwt from '@fastify/jwt';
 import { getProfile } from './routes/auth/getProfile';
+import { errorHandler } from './errorHandler';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -33,6 +34,8 @@ app.register(fastifyJwt, {
   secret: "my-secret-key",
   
 })
+
+app.setErrorHandler(errorHandler);
 
 app.register(fastifyCors);
 
