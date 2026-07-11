@@ -1,0 +1,12 @@
+@baseUrl = "http://localhost:3333"
+
+# @name authenticateWithPassword
+POST http://localhost:3333/sessions/password
+Content-Type: application/json
+
+{
+    "email": "john.doe@example.com",
+    "password": "123456"
+}
+
+###
