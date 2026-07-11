@@ -1,12 +1,18 @@
-@baseUrl = "http://localhost:3333"
-
+@baseUrl = http://localhost:3333
+@authToken = {{authenticateWithPassword.response.body.token}}
 # @name authenticateWithPassword
-POST http://localhost:3333/sessions/password
+POST {{baseUrl}}/sessions/password
 Content-Type: application/json
 
 {
     "email": "john.doe@example.com",
     "password": "123456"
 }
+
+###
+
+# @name getProfile
+GET {{baseUrl}}/profile
+Authorization: Bearer {{authToken}}
 
 ###
