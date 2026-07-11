@@ -13,6 +13,14 @@ export async function authenticateWithPassword(app: FastifyInstance) {
                 email: z.email(),
                 password: z.string().min(6),
             }),
+            response: {
+                400: z.object({
+                    message: z.string().describe("Invalid credentials or user does not have a password"),
+                }),
+                201: z.object({
+                    token: z.string().describe("JWT token for authenticated user"),
+                })
+            }
         },
     }, async (request, reply) => {
         const { email, password } = request.body;
@@ -32,6 +40,6 @@ export async function authenticateWithPassword(app: FastifyInstance) {
             sign: { expiresIn: "7d" }
         });
 
-        return reply.status(200).send({ token });
+        return reply.status(201).send({ token });
     })
 }

@@ -13,7 +13,13 @@ export async function createAccount(app: FastifyInstance) {
                 name: z.string().min(1, 'Name is required'),
                 email: z.email('Invalid email address'),
                 password: z.string().min(6, 'Password must be at least 6 characters long')
-            })
+            }),
+            response: {
+                201: z.undefined().describe('User account created successfully'),
+                400: z.object({
+                    error: z.string()
+                }).describe('User account creation failed due to validation errors or existing email')
+            }
         }
     },async (request, reply) => {
         const { name, email, password } = request.body;
