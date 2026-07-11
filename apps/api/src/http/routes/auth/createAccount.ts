@@ -3,6 +3,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { hash } from "bcryptjs";
+import { BadRequestError } from "../_errors/badRequestError";
 
 export async function createAccount(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().post('/users', {
@@ -28,7 +29,7 @@ export async function createAccount(app: FastifyInstance) {
             where: { email }
         });
 
-        if(userWithEmail) return reply.status(400).send({ error: 'User with this email already exists' });
+        if(userWithEmail) throw new BadRequestError("User with this email already exists");
 
         const [, domain] = email.split('@');
         const autoJoinOrganization = await prisma.organization.findFirst({
