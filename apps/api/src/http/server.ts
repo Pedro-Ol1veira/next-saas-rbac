@@ -8,6 +8,8 @@ import { authenticateWithPassword } from './routes/auth/authenticateWithPassword
 import fastifyJwt from '@fastify/jwt';
 import { getProfile } from './routes/auth/getProfile';
 import { errorHandler } from './errorHandler';
+import { requestPasswordRecovery } from './routes/auth/requestPasswordRecovery';
+import { resetPassword } from './routes/auth/resetPassword';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -42,6 +44,8 @@ app.register(fastifyCors);
 app.register(createAccount);
 app.register(authenticateWithPassword);
 app.register(getProfile);
+app.register(requestPasswordRecovery);
+app.register(resetPassword);
 
 
 
