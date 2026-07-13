@@ -1,9 +1,8 @@
-import { prisma } from "@/lib/prisma";
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
-import { BadRequestError } from "../_errors/badRequestError";
 import { auth } from "@/http/middlewares/auth";
+import { makeGetProfileUseCase } from "@/factories/makeGetProfileUseCase";
 
 export async function getProfile(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().register(auth).get("/profile", {
@@ -28,17 +27,9 @@ export async function getProfile(app: FastifyInstance) {
     }, async (request, reply) => {
         const userId = await request.getCurrentUserId();
         
-        const user = await prisma.user.findUnique({
-            where: { id: userId },
-            select: {
-                id: true,
-                name: true,
-                email: true,
-                avatarUrl: true,
-            }
-        });
-
-        if(!user) throw new BadRequestError("User not found");
+        const useCase = makeGetProfileUseCase();
+        
+        const user = await useCase.execute({ userId });
 
         return reply.status(200).send({ user });
     })
