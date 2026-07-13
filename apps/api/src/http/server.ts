@@ -13,6 +13,7 @@ import { resetPassword } from './routes/auth/resetPassword';
 import { authenticateWithGithub } from './routes/auth/authenticateWithGithub';
 import { env } from '@saas/env';
 import { createOrganization } from './routes/orgs/createOrganization';
+import { getMemberShip } from './routes/orgs/getMemberShip';
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -59,6 +60,7 @@ app.register(requestPasswordRecovery);
 app.register(resetPassword);
 app.register(authenticateWithGithub);
 app.register(createOrganization);
+app.register(getMemberShip);
 
 
 
