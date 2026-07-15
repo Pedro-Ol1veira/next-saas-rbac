@@ -14,6 +14,8 @@ import { authenticateWithGithub } from './routes/auth/authenticateWithGithub';
 import { env } from '@saas/env';
 import { createOrganization } from './routes/orgs/createOrganization';
 import { getMemberShip } from './routes/orgs/getMemberShip';
+import { getOrganization } from './routes/orgs/getOrganization';
+import { getOrganizations } from './routes/orgs/getOrganizations';
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -61,6 +63,8 @@ app.register(resetPassword);
 app.register(authenticateWithGithub);
 app.register(createOrganization);
 app.register(getMemberShip);
+app.register(getOrganization);
+app.register(getOrganizations);
 
 
 
