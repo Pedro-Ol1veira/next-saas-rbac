@@ -16,6 +16,7 @@ import { createOrganization } from './routes/orgs/createOrganization';
 import { getMemberShip } from './routes/orgs/getMemberShip';
 import { getOrganization } from './routes/orgs/getOrganization';
 import { getOrganizations } from './routes/orgs/getOrganizations';
+import { updateOrganization } from './routes/orgs/updateOrganization';
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -65,6 +66,7 @@ app.register(createOrganization);
 app.register(getMemberShip);
 app.register(getOrganization);
 app.register(getOrganizations);
+app.register(updateOrganization);
 
 
 
