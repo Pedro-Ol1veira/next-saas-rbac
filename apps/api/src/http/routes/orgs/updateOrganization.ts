@@ -9,7 +9,7 @@ import { UnauthorizedError } from "../_errors/UnauthorizedError";
 import { getUserPermissions } from "@/utils/getUserPermisions";
 
 export function updateOrganization(app: FastifyInstance) {
-    app.withTypeProvider<ZodTypeProvider>().register(auth).put('/organization/:id', {
+    app.withTypeProvider<ZodTypeProvider>().register(auth).put('/organization/:slug', {
         schema: {
             tags: ['organization'],
             summary: 'Update an existing organization',
@@ -20,7 +20,7 @@ export function updateOrganization(app: FastifyInstance) {
                 shouldAttachUserByDomain: z.boolean().optional(),
             }),
             params: z.object({
-                id: z.string(),
+                slug: z.string(),
             }),
             response: {
                 204: z.undefined(),
@@ -35,7 +35,7 @@ export function updateOrganization(app: FastifyInstance) {
     }, async (request, reply) => {
 
         const userId = await request.getCurrentUserId();
-        const { id: slug } = request.params;
+        const { slug } = request.params;
         const { memberShip, organization } = await request.getUserMembership(slug);
         const { name, domain, shouldAttachUserByDomain } = request.body;
 
