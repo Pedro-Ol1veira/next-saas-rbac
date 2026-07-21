@@ -27,11 +27,11 @@ export function getProject(app: FastifyInstance) {
                         ownerId: z.string(),
                         organizationId: z.string(),
                         description: z.string(),
-                        owner: {
+                        owner: z.object({
                             name: z.string().nullable(),
                             id: z.string(),
                             avatarUrl: z.string().nullable(),
-                        }
+                        })
                     }),
                 }),
                 400: z.object({
