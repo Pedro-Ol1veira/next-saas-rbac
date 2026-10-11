@@ -5,7 +5,7 @@ import { roleSchema } from '@saas/auth'
 import z from "zod";
 
 export async function getMemberShip(app: FastifyInstance) {
-    app.withTypeProvider<ZodTypeProvider>().register(auth).post('/orgs/:slug/membership', {
+    app.withTypeProvider<ZodTypeProvider>().register(auth).get('/organization/:slug/membership', {
         schema: {
             tags: ['organization'],
             summary: 'Get user membership for an organization',
@@ -15,8 +15,9 @@ export async function getMemberShip(app: FastifyInstance) {
             }),
             response: {
                 200: z.object({
-                    memberShip: z.object({
+                    membership: z.object({
                         id: z.uuid(),
+                        userId: z.uuid(),
                         role: roleSchema,
                         organizationId: z.string(),
                     })
@@ -28,10 +29,11 @@ export async function getMemberShip(app: FastifyInstance) {
         const { memberShip } = await request.getUserMembership(slug);
 
         return reply.status(200).send({ 
-            memberShip: {
+            membership: {
                 id: memberShip.id,
                 role: memberShip.role,
                 organizationId: memberShip.organizationId,
+                userId: memberShip.userId,
             }
          });
 

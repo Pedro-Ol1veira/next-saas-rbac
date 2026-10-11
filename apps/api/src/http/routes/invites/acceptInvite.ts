@@ -29,7 +29,6 @@ export function acceptInvite(app: FastifyInstance) {
         const invite = await prisma.invite.findUnique({
             where: {
                 id: inviteId,
-                userId: userId,
             }
         });
 

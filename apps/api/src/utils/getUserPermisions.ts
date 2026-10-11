@@ -6,7 +6,7 @@ export function getUserPermissions(userId: string, role: Role) {
         role: role,
     });
 
-    const abilyty = defineAbilityFor(authUser);
+    const ability = defineAbilityFor(authUser);
 
-    return abilyty;
+    return ability;
 }

@@ -8,13 +8,13 @@ import { UnauthorizedError } from "../_errors/UnauthorizedError";
 import { getUserPermissions } from "@/utils/getUserPermisions";
 
 export function shutdownOrganization(app: FastifyInstance) {
-    app.withTypeProvider<ZodTypeProvider>().register(auth).delete('/organization/:id', {
+    app.withTypeProvider<ZodTypeProvider>().register(auth).delete('/organization/:slug', {
         schema: {
             tags: ['organization'],
             summary: 'Shutdown an existing organization',
             security: [{ bearerAuth: [] }],
             params: z.object({
-                id: z.string(),
+                slug: z.string(),
             }),
             response: {
                 204: z.undefined(),
@@ -26,7 +26,7 @@ export function shutdownOrganization(app: FastifyInstance) {
     }, async (request, reply) => {
 
         const userId = await request.getCurrentUserId();
-        const { id: slug } = request.params;
+        const { slug } = request.params;
         const { memberShip, organization } = await request.getUserMembership(slug);
 
         const authOrganization = organizationSchema.parse(organization);
