@@ -1,6 +1,6 @@
-import { Member } from "@/generated/prisma/client";
+import { Member } from "../../../prisma/generated/prisma/client";
 import { MemberRepository } from "../memberRepository";
-import { MemberCreateInput } from "@/generated/prisma/models/Member";
+import { MemberCreateInput } from "../../../prisma/generated/prisma/models/Member";
 
 export class InMemoryMemberRepository implements MemberRepository {
     public members: Member[] = [];

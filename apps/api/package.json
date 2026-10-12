@@ -6,7 +6,9 @@
         "env:load": "dotenv -e ../../.env --",
         "db:migrate": "pnpm env:load prisma migrate dev",
         "test": "vitest --run --project unit",
-        "test:e2e": "pnpm env:load vitest --run --project e2e"
+        "test:e2e": "pnpm env:load vitest --run --project e2e",
+        "build": "tsc",
+        "start": "node dist/http/server.js"
     },
     "dependencies": {
         "@fastify/cors": "^11.2.0",
@@ -35,6 +37,7 @@
         "dotenv-cli": "^11.0.0",
         "prisma": "^7.8.0",
         "supertest": "^7.2.2",
+        "tsup": "^8.5.1",
         "tsx": "^4.23.0",
         "vitest": "^4.1.10"
     },

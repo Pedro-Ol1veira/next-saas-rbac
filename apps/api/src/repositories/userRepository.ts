@@ -1,5 +1,5 @@
-import { Organization, User } from "@/generated/prisma/client";
-import { UserCreateInput } from "@/generated/prisma/models";
+import { Organization, User } from "../../prisma/generated/prisma/client";
+import { UserCreateInput } from "../../prisma/generated/prisma/models";
 
 export interface UserRepository {
     create(data: UserCreateInput, autoJoinOrganization: Organization | null): Promise<void>;

@@ -1,4 +1,4 @@
-import { Organization } from "@/generated/prisma/client";
+import { Organization } from "../../../prisma/generated/prisma/client";
 import { OrganizationRepository } from "../organizationRepository";
 
 export class InMemoryOrganizationRepository implements OrganizationRepository {

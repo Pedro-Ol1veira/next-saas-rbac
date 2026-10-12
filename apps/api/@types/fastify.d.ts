@@ -1,4 +1,4 @@
-import { Member, Organization } from '@/generated/prisma/client';
+import { Member, Organization } from '../prisma/generated/prisma/client';
 import 'fastify';
 
 declare module 'fastify' {

@@ -1,4 +1,4 @@
-import { User } from "@/generated/prisma/client";
+import { User } from "../../prisma/generated/prisma/client";
 import { BadRequestError } from "@/http/routes/_errors/badRequestError";
 import { UserRepository } from "@/repositories/userRepository";
 

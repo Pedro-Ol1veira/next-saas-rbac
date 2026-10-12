@@ -1,6 +1,6 @@
-import { Organization, User } from "@/generated/prisma/client";
+import { Organization, User } from "../../../prisma/generated/prisma/client";
 import { UserRepository } from "../userRepository";
-import { UserCreateInput } from "@/generated/prisma/models/User";
+import { UserCreateInput } from "../../../prisma/generated/prisma/models/User";
 import { hash } from "bcryptjs";
 import { MemberRepository } from "../memberRepository";
 
