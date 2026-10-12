@@ -1,6 +1,7 @@
 {
     "name": "@saas/api",
     "version": "1.0.0",
+    "type": "module",
     "scripts": {
         "dev": "pnpm env:load tsx watch src/http/server.ts",
         "env:load": "dotenv -e ../../.env --",
@@ -8,7 +9,7 @@
         "test": "vitest --run --project unit",
         "test:e2e": "pnpm env:load vitest --run --project e2e",
         "build": "tsup",
-        "start": "node dist/http/server.js"
+        "start": "pnpm env:load node dist/http/server.js"
     },
     "dependencies": {
         "@fastify/cors": "^11.2.0",

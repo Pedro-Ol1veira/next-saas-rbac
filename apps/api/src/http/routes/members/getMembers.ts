@@ -5,7 +5,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { UnauthorizedError } from "../_errors/UnauthorizedError";
 import { prisma } from "@/lib/prisma";
-import { Role } from "../../../../prisma/generated/prisma/browser";
+import { Role } from "@/../prisma/generated/browser";
 
 export function getMembers(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().register(auth).get('/organization/:orgSlug/members', {
