@@ -14,11 +14,7 @@ import Link from "next/link";
 
 export function SignUpForm() {
 
-    const [{ success, message, errors }, handleAction, isPending] = useFormState(signUpAction, {
-        success: false,
-        message: null,
-        errors: null
-    });
+    const [{ success, message, errors }, handleAction, isPending] = useFormState(signUpAction);
     
     return (
         <div className="space-y-4">
