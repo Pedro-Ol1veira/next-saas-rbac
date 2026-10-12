@@ -7,7 +7,7 @@
         "db:migrate": "pnpm env:load prisma migrate dev",
         "test": "vitest --run --project unit",
         "test:e2e": "pnpm env:load vitest --run --project e2e",
-        "build": "tsc",
+        "build": "tsup",
         "start": "node dist/http/server.js"
     },
     "dependencies": {
